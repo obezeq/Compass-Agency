@@ -1,7 +1,7 @@
-gsap.from("#page1 h3", {
+gsap.from(".page1 h3", {
     transform: "translateX(150%) translateY(-600%) rotate(24deg)",
     scrollTrigger: {
-        trigger: "#page1",
+        trigger: ".page1",
         scroller: "body",
         markers: true,
         start: "top 0%",
@@ -12,10 +12,10 @@ gsap.from("#page1 h3", {
     }
 })
 
-gsap.to("#page2 h1", {
+gsap.to(".page2 h1", {
     transform: "translateX(-150%)",
     scrollTrigger: {
-        trigger: "#page2",
+        trigger: ".page2",
         scroller: "body",
         markers: true,
         start: "top 0%",
