@@ -88,6 +88,9 @@
     font-display: swap;
 }
 
+/* ───────────────────────────────── */
+/*              General              */
+/* ───────────────────────────────── */
 
 * {
     max-width: 100%;
@@ -95,6 +98,11 @@
     margin: 0;
     box-sizing: border-box;
     font-family: Neue Montreal;
+}
+
+:root {
+    --primary-color: #111111;
+    --secondary-color: #eeeeee;
 }
 
 html, body {
@@ -111,85 +119,88 @@ section {
     height: 100%;
 }
 
+
 .lastik {
     font-family: Lastik;
 }
 
-.page1 {
+.presentation {
     height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     text-align: center;
     margin: 0 auto;
 }
 
-.home__title {
+.presentation__title {
     font-size: 16rem;
     font-weight: bold;
 }
 
-.home__subtitle {
+.presentation__subtitle {
     font-style: italic;
     font-size: 4rem;
 }
 
-.home__topsubtitle {
+.presentation__topsubtitle {
     font-size: 4rem;
     transform: translateX(-75%);
 }
 
-.page2 {
+.services__slide {
     height: 100vh;
     width: 100%;
-    background-color: #fff;
-    padding: 5vw 0;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
 }
 
 .page3 {
     height: 100vh;
     width: 100%;
-    background-color: black;
+    background-color: var(--primary-color);
 }
 
-.page2 h1 {
+.services__slide h1 {
     font-size: 30vw;
     font-weight: 600;
     text-transform: uppercase;
+    color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
 
     body {
         overflow-x: hidden;
+        background-color: #111111;
     }
 
-    .page1 {
+    .presentation {
         gap: 1rem;
         overflow: hidden;
     }
 
-    .home__title {
+    .presentation__title {
         font-size: 8rem;
     }
 
-    .home__subtitle {
+    .presentation__subtitle {
         font-size: 3rem;
     }
 
-    .home__topsubtitle {
+    .presentation__topsubtitle {
         font-size: 3rem;
         transform: translateX(-33%);
     }
 
-    .page2 {
+    .services__slide {
         height: 50vh;
         overflow: hidden;
-        padding-top: 20%;
     }
 }
 
@@ -199,31 +210,155 @@ section {
         overflow-x: hidden;
     }
 
-    .page1 {
+    .presentation {
         gap: 1rem;
         overflow: hidden;
     }
 
-    .home__title {
+    .presentation__title {
         font-size: 4rem;
     }
 
-    .home__subtitle {
+    .presentation__subtitle {
         font-size: 2rem;
     }
 
-    .home__topsubtitle {
+    .presentation__topsubtitle {
         font-size: 2rem;
         transform: translateX(-20%);
     }
 
-    .page2 {
-        padding-top: 33%;
+    .services__slide {
+        justify-content:center;
         overflow: hidden;
-        height: 33%;
+        height: 33vh;
     }
 
-    .page2 h1 {
-        font-size: 30vw;
+    
+}
+
+.qualityoverquantity {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--primary-color);
+}
+
+/* Container for applying perspective */
+.perspective-container {
+    perspective: 1000px; /* Creates a realistic 3D effect */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* Target the stroke of the path */
+.circle {
+    stroke: #ffffff; /* Add your desired stroke color */
+    stroke-width: 0.965462; /* Keep the original width */
+    fill: #fff; /* Ensures no fill color */
+  }
+  
+  /* Optional: Add hover effects or other styles */
+  .circle:hover {
+    stroke: red; /* Example hover effect */
+  }
+  
+
+/* Circle with perspective applied */
+.circle {
+    width: 60%; /* Default size for larger screens */
+    height: 40%; /* Match the height for an oval perspective circle */
+    border-radius: 50%; /* Ensures the circle shape */
+    transform-origin: center;
+    transform: rotateX(65deg); /* Perspective-altering transforms */
+    border: 0.5rem solid var(--secondary-color);
+    position: relative; /* For text positioning inside */
+    display: flex; /* Align text inside */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Text inside the circle */
+.text {
+    position: absolute;
+    font-size: 7rem; /* Default font size */
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotateX(65deg); /* Match the perspective of the circle */
+    transform-origin: center;
+    pointer-events: none; /* Prevent interaction issues */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Tablet and smaller screens */
+    .circle {
+        width: 80%; /* Make the circle larger to fill more space */
+        height: 50%; /* Adjust height for better proportions */
+        border: 0.4rem solid var(--secondary-color); /* Slightly smaller border */
     }
+    .text {
+        font-size: 1.5rem; /* Reduce font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) { /* Mobile screens */
+
+    .circle {
+        width: 90%; /* Maximize the circle size for mobile */
+        height: 40%; /* Adjust height for a better fit */
+        border: 0.3rem solid var(--secondary-color); /* Even smaller border */
+    }
+    .text {
+        font-size: 3rem; /* Further reduce font size for small screens */
+        transform: rotateX(50deg); /* Perspective-altering transforms */
+    }
+}
+
+.qualityoverquantity {
+    position: relative;
+}
+
+.quality {
+    width: 100%;
+    height: 83%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+}
+
+.quality__text {
+    display: flex;
+    background-color: var(--primary-color);
+    border: 0.5rem solid var(--secondary-color);
+    padding: 8rem 4rem;
+    border-radius: 1rem;
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+
+.quantity {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+svg {
+    width: 50%;
+    height: auto;
+    stroke: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.quantity__text {
+    fill: var(--secondary-color);
+    stroke: none;
 }
