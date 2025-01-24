@@ -14,6 +14,22 @@ gsap.from(".presentation h3", {
     }
 })
 
+var servicesAnimations = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".home__services--title",
+        scroller: "body",
+        markers: true,
+        start: "top 50%",
+        end: "top 0%",
+        scrub: 2
+    }
+})
+
+/* servicesAnimations.from(".service__1", {
+    x: -100
+}) */
+
+
 gsap.to(".services__slide h1", {
     transform: "translateX(-150%)",
     scrollTrigger: {
@@ -29,6 +45,7 @@ gsap.to(".services__slide h1", {
 })
 
 
+
 gsap.from(".quality", {
     transform: "translateY(-150%)",
     scrollTrigger: {
@@ -38,6 +55,20 @@ gsap.from(".quality", {
         start: "top 0%",
         end: "top -250%",
         scrub: 3,
+        pin: true,
+        pinSpacing: true
+    }
+})
+
+gsap.from(".home__reviews--title", {
+    fontSize: "0rem",
+    scrollTrigger: {
+        trigger: ".home__whataretheysaying",
+        scroller: "body",
+        markers: true,
+        start: "top 0%",
+        end: "top -300%",
+        scrub: 1,
         pin: true,
         pinSpacing: true
     }
