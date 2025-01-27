@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass Agency | Contact Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main class="contact__page">
+        <section class="contact__info">
+            <article class="contact__info--presentation">
+                <h1 class="contact__info--title">CONTACT US</h1>
+                <p class="contact__info--subtitle">Doubts? Not sure? Don't worry about asking anything, even if you just want to say hi!</p>
+            </article>
+            <article class="contact__info--details">
+                <ul class="contact__info--list">
+                    <li class="contact__info--item">
+                        <span class="fa-solid fa-location-dot"></span>
+                        5678 San Francisco, CA, USA
+                    </li>
+                    <li class="contact__info--item">
+                        <span class="fa-solid fa-phone"></span>
+                        +123456789
+                    </li>
+                    <li class="contact__info--item">
+                        <span class="fa-solid fa-envelope"></span>
+                        <a class="contact__info--link" href="mailto:contact@compassagency.com">contact@compassagency.com</a>
+                    </li>
+                    <li class="contact__info--item">
+                        <span class="fa-solid fa-calendar-check"></span>
+                        <a class="contact__info--link" href="#">Book a meeting</a>
+                    </li>
+                </ul>
+            </article>
+            <article class="contact__info--quote">
+                "The important thing is not to stop questioning. Curiosity has its own reason for existing. One cannot help but be in awe when they contemplate the mysteries of eternity, of life, of the marvelous structure of reality. It is enough if one tries merely to comprehend a little of this mystery every day. Never lose a holy curiosity."
+                – Albert Einstein
+            </article>
+        </section>
+        <section class="contact__form">
+            <form class="contact__form--form">
+                <h2 class="contact__form--title">Let's talk about your idea</h2>
+                
+                <div class="contact__form--container">
+                    <label class="contact__form--label" for="name">Your Name</label>
+                    <input class="contact__form--input" type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+            
+                <div class="contact__form--container">
+                    <label class="contact__form--label" for="email">Your Email</label>
+                    <input class="contact__form--input" type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+            
+                <div class="contact__form--container">
+                    <label class="contact__form--label" for="service">What service are you interested in?</label>
+                    <div class="contact__form--options">
+                      <input type="radio" id="prmanagement" name="service" value="prmanagement" class="contact__form--radio" required>
+                      <label for="prmanagement" class="contact__form--option">PR Management</label>
+                  
+                      <input type="radio" id="sms" name="service" value="sms" class="contact__form--radio" required>
+                      <label for="sms" class="contact__form--option">Social Media Solutions</label>
+                  
+                      <input type="radio" id="seo" name="service" value="seo" class="contact__form--radio" required>
+                      <label for="seo" class="contact__form--option">SEO Solutions</label>
+
+                      <input type="radio" id="mediabuying" name="service" value="mediabuying" class="contact__form--radio" required>
+                      <label for="mediabuying" class="contact__form--option">Media Buying</label>
+
+                      <input type="radio" id="smm" name="service" value="smm" class="contact__form--radio" required>
+                      <label for="smm" class="contact__form--option">Social Media Marketing</label>
+
+                      <input type="radio" id="digitalmarketing" name="service" value="digitalmarketing" class="contact__form--radio" required>
+                      <label for="digitalmarketing" class="contact__form--option">Digital Marketing</label>
+
+                      <input type="radio" id="other" name="service" value="other" class="contact__form--radio" required>
+                      <label for="other" class="contact__form--option">Other</label>
+                    </div>
+                  </div>
+            
+                <div class="contact__form--container">
+                    <label class="contact__form--label" for="message">Your Message</label>
+                    <textarea class="contact__form--textarea" id="message" name="message" rows="4" placeholder="Tell us more about your project or needs" required></textarea>
+                </div>
+            
+                <button class="contact__form--button" type="submit">Contact</button>
+              </form>
+        </section>
+    </main>
+</body>
+</html>

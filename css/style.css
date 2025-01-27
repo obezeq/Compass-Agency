@@ -1,3 +1,12 @@
+/*
+    COMPASS AGENCY
+    styles.css
+*/
+
+/* ───────────────────────────────── */
+/*           Fonts Config            */
+/* ───────────────────────────────── */
+
 @font-face {
     font-family: 'Neue Montreal';
     src: url('../fonts/neue-montreal/NeueMontreal-Medium.woff2') format('woff2'),
@@ -103,6 +112,8 @@
 :root {
     --primary-color: #111111;
     --secondary-color: #cccccc;
+    --third-color: #999999;
+    --four-color: #333333;
 }
 
 html, body {
@@ -110,9 +121,15 @@ html, body {
     width: 100%;
 }
 
+body *::selection {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
 body {
     overflow-x: hidden;
     background-color: var(--primary-color);
+    cursor: crosshair;
 }
 
 section {
@@ -136,6 +153,10 @@ a {
 .lastik {
     font-family: Lastik;
 }
+
+/* ───────────────────────────────── */
+/*            Home Page              */
+/* ───────────────────────────────── */
 
 .presentation {
     height: 100vh;
@@ -185,6 +206,11 @@ a {
     text-transform: uppercase;
     color: var(--primary-color);
 }
+
+/* --------------------------------- */
+/* RESPONSIVE:                       */
+/* Home Page - Presentation          */
+/* --------------------------------- */
 
 @media (max-width: 768px) {
 
@@ -446,6 +472,12 @@ svg {
     color: var(--secondary-color);
 }
 
+.whataretheysaying__title {
+    width: 66%;
+    font-size: 8rem;
+    text-align: center;
+}
+
 .home__reviews {
     width: 100%;
     height: 100vh;
@@ -453,6 +485,7 @@ svg {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
     
@@ -462,21 +495,379 @@ svg {
     width: 66%;
     font-size: 8rem;
     text-align: center;
+    color: var(--secondary-color);
 }
 
 .reviews__container {
-    
     width: 80%;
     display: flex;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .reviews__review {
+    width: 30%;
+    height: 100%;
     display: flex;
-    width: 70%;
-    border: 1rem solid var(--secondary-color);
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 0.5rem solid var(--secondary-color);
     border-radius: 0.3rem;
     padding: 2rem;
+}
+
+.review__person {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+.review__company {
+    font-size: 1.2rem;
+}
+
+.review__description {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+.reviews__discover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    border: 0.3rem solid transparent;
+    transition: all 0.3s ease;
+}
+
+.reviews__discover:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 0.3rem solid var(--secondary-color);
+}
+
+.home__reviews--subtitle {
+    font-family: Lastik;
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.home__reviews--subtitle:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+.title__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ───────────────────────────────── */
+/*           CONTACT PAGE            */
+/* ───────────────────────────────── */
+.contact__page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    color: var(--secondary-color);
+    padding: 6%;
+}
+
+/* Contact Info (Left Side of CONTACT PAGE)*/
+.contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.contact__info--presentation {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact__info--title {
+    font-size: 4rem;
+}
+
+.contact__info--subtitle {
+    font-size: 1.5rem;
+}
+
+.contact__info--list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact__info--item {
+    font-size: 1.3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.contact__info--link {
+    color: var(--secondary-color);
+}
+
+.contact__info--link:hover {
+    text-decoration: underline;
+}
+
+.contact__info--quote {
+    width: 75%;
+    font-size: 1.3rem;
+    font-style: italic;
+}
+
+/* Contact Form (Right Side of CONTACT PAGE) */
+.contact__form--form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact__form--title {
+    font-size: 4rem;
+}
+
+.contact__form--container {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1rem;
+}
+
+.contact__form--label {
+    font-size: 1.5rem;
+}
+
+.contact__form--input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 5px 0;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.contact__form--input::placeholder {
+    color: var(--third-color);
+}
+
+.contact__form--input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.contact__form--options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+.contact__form--radio {
+  display: none;
+}
+
+.contact__form--option {
+  display: inline-block;
+  padding: 0.8rem 1.7rem;
+  border: 0.1rem solid var(--third-color);
+  border-radius: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact__form--option:hover {
+  border-color: var(--secondary-color);
+  background-color: var(--four-color);
+}
+
+.contact__form--radio:checked + .contact__form--option {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.contact__form--textarea {
+    background: none;
+    border: 0.1rem solid var(--secondary-color);
+    border-radius: 1rem;
+    outline: none;
+    padding: 1rem;
+    resize: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.contact__form--button {
+    max-width: fit-content;
+    background-color: var(--primary-color);
+    border: 0.1rem solid var(--secondary-color);
+    border-radius: 2rem;
+    color: var(--secondary-color);
+    padding: 1rem 4rem;
+    font-size: 1.5rem;
+    transition: 0.3s all ease-out;
+}
+
+.contact__form--button:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* ───────────────────────────────── */
+/*          ABOUT US PAGE            */
+/* ───────────────────────────────── */
+
+.main__about {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--secondary-color);
+}
+
+.about__section {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.about__intro {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about__intro--title {
+    font-size: 7.5rem;
+    text-align: center;
+}
+
+.about__intro--subtitle {
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.about__container {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 33vh;
+}
+
+.about__title {
+    font-size: 6rem;
+}
+
+.about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    font-size: 2.5rem;
+}
+
+.about__link {
+    max-width: fit-content;
+    border: 0.2rem solid var(--secondary-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    transition: all 0.3s ease-out;
+}
+
+.about__link:hover {
+    border: 0.2rem solid none;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.about__cta {
+    height: 100vh;
+}
+
+/* ───────────────────────────────── */
+/*           SERVICE PAGE            */
+/* ───────────────────────────────── */
+
+.service {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 33vh;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.service__section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.service__hero {
+    height: 100vh;;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.service__title {
+    font-size: 9rem;
+}
+
+.service__subtitle {
+    font-size: 3rem;
+}
+
+.service__heading {
+    font-size: 5rem;
+}
+
+.service__content {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.service__link {
+    max-width: fit-content;
+    border: 0.2rem solid var(--secondary-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    transition: all 0.3s ease-out;
+}
+
+.service__link:hover {
+    border: 0.2rem solid none;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }

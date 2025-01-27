@@ -60,7 +60,7 @@ gsap.from(".quality", {
     }
 })
 
-gsap.from(".home__reviews--title", {
+gsap.from(".whataretheysaying__title", {
     fontSize: "0rem",
     scrollTrigger: {
         trigger: ".home__whataretheysaying",
