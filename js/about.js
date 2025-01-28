@@ -18,7 +18,6 @@ gsap.timeline({
     start: "top 0%",
     end: "top -369%",
     scrub: 2,
-    markers: true,
     pin: true,
     pinSpacing: true
   }
