@@ -1,7 +1,18 @@
+// Get all the nav links and the hidden checkbox
+const navLinks = document.querySelectorAll('.header__nav-link');
+const navToggle = document.getElementById('nav-toggle');
 
+// Add a click event listener to each nav link
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    // Uncheck the checkbox to close the menu
+    navToggle.checked = false;
+  });
+});
 
 gsap.from(".presentation h3", {
-    transform: "translateX(150%) translateY(-600%) rotate(24deg)",
+    transform: "translateX(224%) translateY(-600%) rotate(24deg)",
+    visibility: "none",
     scrollTrigger: {
         trigger: ".presentation",
         scroller: "body",
