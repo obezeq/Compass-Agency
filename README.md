@@ -137,3 +137,50 @@ Además de HTML, existen otros lenguajes de marca como **XML**, **XHTML**, **SVG
 
 ---
 
+## VALIDACIÓN W3C
+
+**Código con error:**
+```css
+.home__services {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: center;
+    padding: 0vh 0 13vh 0;
+    background-color: var(--primary-color);
+}
+```
+
+![W3C VALIDATOR ERROR](https://raw.githubusercontent.com/obezeq/Compass-Agency/refs/heads/main/img/w3c-css-validator-error.png)
+
+(error en "align-items: space-between;")
+
+**Código corregido:**
+```css
+.home__services {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0vh 0 13vh 0;
+    background-color: var(--primary-color);
+}
+```
+
+![W3C VALIDATOR SOLUCION](https://raw.githubusercontent.com/obezeq/Compass-Agency/refs/heads/main/img/w3c-css-validator-solucion.png)
+
+**Explicación del error:**  
+El error ocurría porque `space-between` **no es un valor válido** para la propiedad `align-items` en CSS. Esta propiedad solo acepta valores como:
+- `flex-start` (alineación al inicio del eje transversal),
+- `flex-end` (alineación al final del eje transversal),
+- `center` (centrado),
+- `baseline` (alineación por línea base),
+- `stretch` (estirar para llenar el espacio).
+
+**¿Cómo lo he podido solucionar?**  
+1. **He revisado que es una propiedad incorrecta:** la he remplazado `align-items: space-between;` por un valor válido como `center`, que centra los elementos horizontalmente (ya que `flex-direction: column` define el eje transversal como horizontal).
+2. **Aclaración sobre `space-between`:** Si el objetivo era distribuir los elementos con espacio entre ellos, esto se logra con `justify-content: space-between` (para el eje principal). Sin embargo, en el código original, `justify-content` estaba configurado como `center`, por lo que se asumió que la intención no era usar `space-between` en el eje principal. Si ese fuera el caso, habría que ajustar `justify-content` en lugar de `align-items`.
