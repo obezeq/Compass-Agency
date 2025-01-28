@@ -1,10 +1,35 @@
-# Compass Ageny
+# COMPASS AGENCY
+
+¡Bienvenido a COMPASS AGENCY! En un mundo donde la primera impresión cuenta, hemos creado una web que no solo destaca, sino que también refleja la esencia y la visión de tu agencia de marketing digital. A continuación, te presentamos las características y beneficios de esta innovadora plataforma, ideal para captar la atención  de los usarios de la forma más sencilla y impactante.
+
+---
+## 🚀 ¿Por qué esta web es la ideal para captar usuarios?
+
+### 1. **Diseño Moderno y Atractivo**
+La web ha sido diseñada con HTML5 y CSS3, asegurando un aspecto fresco y contemporáneo. Cada elemento ha sido cuidadosamente pensado para captar la atención de tus visitantes y convertirlos en clientes potenciales.
+
+### 2. **Animaciones Impactantes**
+Gracias a la integración de GSAP (libreria de javascript), hemos añadido animaciones CSS3 que no solo embellecen la experiencia del usuario, sino que también guían la atención hacia los elementos clave de tu contenido de una forma que impacte en la memoria del usuario y deje una huella especial y buena imagen cuando visite la web.
+
+### 3. **Efecto Parallax**
+La implementación del efecto parallax proporciona una profundidad visual que hace que la navegación sea más envolvente. Este efecto no solo es estéticamente agradable, sino que también mejora la usabilidad de la web, y experiencia del usuario en la página web que impactará en la primera imagen que tendran los clientes sobre la agencia, siendo así positiva y impactante. 
+
+### 4. **Modo Oscuro y Claro**
+Con la creciente popularidad del modo oscuro, hemos implementado una estructura que permite a los usuarios alternar entre el modo claro y oscuro. Esto no solo mejora la experiencia del usuario, sino que también muestra que COMPASS AGENCY está a la vanguardia de las tendencias digitales.
+
+### 5. **Código Limpio y Eficiente**
+El código ha sido desarrollado con las mejores prácticas en mente, asegurando que sea fácil de mantener y escalar. Esto significa que tu equipo podrá realizar actualizaciones y modificaciones sin complicaciones, haciendo que el mantenimiento sea flexible y sencillo de realizar.
+
+## 🌟 Beneficios para COMPASS AGENCY
+
+- **Aumenta la Credibilidad**: Una web bien diseñada transmite profesionalismo y confianza, lo que es crucial para atraer nuevos clientes.
+- **Mejora la Experiencia del Usuario**: Con un diseño intuitivo y animaciones fluidas, los visitantes disfrutarán de una navegación sin fricciones.
+- **Optimización para SEO**: La estructura de la web está optimizada para motores de búsqueda, lo que ayudará a mejorar la visibilidad de COMPASS AGENCY en línea. Y posibilidad de desarrollar un blog de forma sencilla para la creación de artículos que incrementen el SEO y expandan la visibilidad de la agencia a todos los usuarios del mundo con una simple búsqueda.
+- **Adaptabilidad Responsive**: La web es completamente responsiva, lo que significa que se verá increíble en cualquier dispositivo, desde móviles hasta pantallas grandes.
 
 ---
 
 ## **Análisis de la Estructura de HTML de COMPASS AGENCY**
-
----
 
 ### **1. Header (Encabezado)**
 
@@ -139,6 +164,49 @@ Además de HTML, existen otros lenguajes de marca como **XML**, **XHTML**, **SVG
 
 ## VALIDACIÓN W3C
 
+### VALIDACIÓN W3C HTML5
+
+#### ERROR 1
+
+**Código con error** (index.html)
+```html
+<h3 class="presentation__topsubtitle lastik">The madaf*cking</h2>
+```
+
+![W3C VALIDATOR ERROR](https://raw.githubusercontent.com/obezeq/Compass-Agency/refs/heads/main/img/w3c-html-validator-error-1.png)
+
+**Código solucionado** (index.html)
+```html
+<h3 class="presentation__topsubtitle lastik">The madaf*cking</h3>
+```
+
+El error era simplemente un despiste, lo he solucionado simplemente poniendo la etiqueta de forma correcta.
+
+#### ERROR 2
+
+**Código con error** (index.html)
+```html
+<h1 class="footer__logo">
+    <a href="." class="footer__logo-link">COMPASS AGENCY</a>
+    <p class="footer__copyright">&copy; 2025 COMPASS AGENCY. All rights reserved.</p>
+</h1>
+```
+
+![W3C VALIDATOR ERROR](https://raw.githubusercontent.com/obezeq/Compass-Agency/refs/heads/main/img/w3c-html-validator-error-2.png)
+
+**Código solucionado** (index.html)
+```html
+<div class="footer__logo">
+    <h1><a href="." class="footer__logo-link">COMPASS AGENCY</a></h1>
+    <p class="footer__copyright">&copy; 2025 COMPASS AGENCY. All rights reserved.</p>
+</div>
+```
+
+Para solucionarlo simplemente he sustituido el "h1" por un "div" pues el "div" me sirve como una especie de container para el logo del footer, el cual incluirá un "h1", adentro con el enlace "a", y luego un "p" donde ya contendrá el copyright.
+
+
+### VALIDACIÓN W3C - CSS3
+
 **Código con error:**
 ```css
 .home__services {
@@ -184,3 +252,39 @@ El error ocurría porque `space-between` **no es un valor válido** para la prop
 **¿Cómo lo he podido solucionar?**  
 1. **He revisado que es una propiedad incorrecta:** la he remplazado `align-items: space-between;` por un valor válido como `center`, que centra los elementos horizontalmente (ya que `flex-direction: column` define el eje transversal como horizontal).
 2. **Aclaración sobre `space-between`:** Si el objetivo era distribuir los elementos con espacio entre ellos, esto se logra con `justify-content: space-between` (para el eje principal). Sin embargo, en el código original, `justify-content` estaba configurado como `center`, por lo que se asumió que la intención no era usar `space-between` en el eje principal. Si ese fuera el caso, habría que ajustar `justify-content` en lugar de `align-items`.
+
+# 👀 ¿Cómo visualizar la página web?
+
+##  VISUALIZAR LA WEBB CON GITHUB PAGES
+[HAZ CLICK AQUÍ PARA VISITAR LA PÁGINA WEB](https://obezeq.github.io/Compass-Agency)
+
+## VISUALIZAR LA WEB  EN LOCAL
+
+### 📥 Clonar el repositorio (para los que les gusta lo *pro*):  
+
+**Paso 1:** Abre tu terminal favorita y escribe esto (sí, copia-pega funciona)
+```bash
+git clone https://github.com/obezeq/Compass-Agency
+```
+
+**Paso 2:** Navega hasta la carpeta del proyecto como un GPS  
+```bash
+cd Compass-Agency
+```
+
+
+### 🌍 Ejecutar la web (modo *easy*):  
+**Opción A** ➡️ Abre `index.html` directamente en tu navegador (sí, arrastrar-soltar también vale, o doble click). 
+
+**Opción PRO** ➡️ Usa un servidor local (por si quieres jugar con fuego 🔥):  
+Si tienes Node.js instalado:
+```bash  
+npx live-server  
+```
+
+O con Python (porque los clásicos nunca mueren):  
+```bash  
+python -m http.server 8000
+```
+
+👉 Luego abre http://localhost:8000 en tu navegador.
