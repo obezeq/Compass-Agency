@@ -4,10 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compass Agency | Contact Us</title>
+
+    <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon for browsers -->
+    <link rel="icon" href="img/icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/icon/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="img/icon/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="img/icon/apple-touch-icon.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" sizes="192x192" href="img/icon/android-chrome-192x192.png">
+    <link rel="icon" sizes="512x512" href="img/icon/android-chrome-512x512.png">
+
 </head>
 <body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <!-- Title -->
+        <h1 class="header__title">
+            <a href="/" class="header__title-link">COMPASS</a>
+        </h1>
+
+        <!-- Burger Menu -->
+        <input type="checkbox" id="nav-toggle" class="header__nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="header__burger-menu">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+        </label>
+
+        <!-- Navigation Links -->
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="/" class="header__nav-link underline">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="/#services" class="header__nav-link underline">Services</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="/about.html" class="header__nav-link underline">About Us</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="/#reviews" class="header__nav-link underline">Reviews</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="/contact.html" class="header__nav-link underline">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Contact Page -->
     <main class="contact__page">
         <section class="contact__info">
             <article class="contact__info--presentation">
@@ -52,6 +106,11 @@
                     <label class="contact__form--label" for="email">Your Email</label>
                     <input class="contact__form--input" type="email" id="email" name="email" placeholder="Enter your email address" required>
                 </div>
+
+                <div class="contact__form--container">
+                    <label class="contact__form--label" for="email">Phone Number</label>
+                    <input class="contact__form--input" type="email" id="email" name="email" placeholder="Enter your phone number" required>
+                </div>
             
                 <div class="contact__form--container">
                     <label class="contact__form--label" for="service">What service are you interested in?</label>
@@ -78,7 +137,26 @@
                       <label for="other" class="contact__form--option">Other</label>
                     </div>
                   </div>
-            
+                
+                  <div class="contact__form--container">
+                    <label class="contact__form--label" for="budget">Select Your Budget</label>
+                    <div class="contact__form--budget">
+                        <input 
+                            type="range" 
+                            id="budget" 
+                            name="budget" 
+                            min="500" 
+                            max="10000" 
+                            step="500" 
+                            class="contact__form--range" 
+                            oninput="updateBudgetValue(this.value)" 
+                            required
+                        >
+                        <span class="contact__form--budget-value" id="budget-value">$1,000</span>
+                    </div>
+                </div>
+                
+
                 <div class="contact__form--container">
                     <label class="contact__form--label" for="message">Your Message</label>
                     <textarea class="contact__form--textarea" id="message" name="message" rows="4" placeholder="Tell us more about your project or needs" required></textarea>
@@ -88,6 +166,7 @@
               </form>
         </section>
     </main>
+
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer__container">
@@ -98,19 +177,19 @@
             <nav class="footer__nav" aria-label="Footer Navigation">
                 <ul class="footer__nav-list">
                     <li class="footer__nav-item">
-                        <a href="/" class="footer__nav-link">Home</a>
+                        <a href="/" class="footer__nav-link underline">Home</a>
                     </li>
                     <li class="footer__nav-item">
-                        <a href="/about" class="footer__nav-link">About Us</a>
+                        <a href="/about" class="footer__nav-link underline">About Us</a>
                     </li>
                     <li class="footer__nav-item">
-                        <a href="/services" class="footer__nav-link">Services</a>
+                        <a href="/services" class="footer__nav-link underline">Services</a>
                     </li>
                     <li class="footer__nav-item">
-                        <a href="/portfolio" class="footer__nav-link">Reviews</a>
+                        <a href="/portfolio" class="footer__nav-link underline">Reviews</a>
                     </li>
                     <li class="footer__nav-item">
-                        <a href="/contact" class="footer__nav-link">Contact</a>
+                        <a href="/contact" class="footer__nav-link underline">Contact</a>
                     </li>
                 </ul>
             </nav>

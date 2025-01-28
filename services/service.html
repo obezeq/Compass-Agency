@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compass Agency | Service</title>
+    
+    <!-- CSS Styles -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon for browsers -->
+    <link rel="icon" href="../img/icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/icon/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../img/icon/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="../img/icon/apple-touch-icon.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" sizes="192x192" href="../img/icon/android-chrome-192x192.png">
+    <link rel="icon" sizes="512x512" href="../img/icon/android-chrome-512x512.png">
+
 </head>
 <body>
+
+    <!-- Header Section -->
+    <header class="header">
+      <!-- Title -->
+      <h1 class="header__title">
+          <a href="/" class="header__title-link">COMPASS</a>
+      </h1>
+
+      <!-- Burger Menu -->
+      <input type="checkbox" id="nav-toggle" class="header__nav-toggle" aria-hidden="true">
+      <label for="nav-toggle" class="header__burger-menu">
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+      </label>
+
+      <!-- Navigation Links -->
+      <nav class="header__nav">
+          <ul class="header__nav-list">
+              <li class="header__nav-item">
+                  <a href="/" class="header__nav-link underline">Home</a>
+              </li>
+              <li class="header__nav-item">
+                  <a href="/#services" class="header__nav-link underline">Services</a>
+              </li>
+              <li class="header__nav-item">
+                  <a href="/about.html" class="header__nav-link underline">About Us</a>
+              </li>
+              <li class="header__nav-item">
+                  <a href="/#reviews" class="header__nav-link underline">Reviews</a>
+              </li>
+              <li class="header__nav-item">
+                  <a href="/contact.html" class="header__nav-link underline">Contact</a>
+              </li>
+          </ul>
+      </nav>
+    </header>
+
     <main class="service">
         <!-- Hero Section -->
         <section class="service__section service__hero">
@@ -108,6 +162,37 @@
             <a href="/contact.html" class="service__link" target="_blank">Contact us today</a> and let’s start optimizing your success.
           </p>
         </section>
-    </main>      
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer__container">
+          <h1 class="footer__logo">
+              <a href="/" class="footer__logo-link">COMPASS AGENCY</a>
+              <p class="footer__copyright">&copy; 2025 COMPASS AGENCY. All rights reserved.</p>
+          </h1>
+          <nav class="footer__nav" aria-label="Footer Navigation">
+              <ul class="footer__nav-list">
+                  <li class="footer__nav-item">
+                      <a href="/" class="footer__nav-link underline">Home</a>
+                  </li>
+                  <li class="footer__nav-item">
+                      <a href="/about.html" class="footer__nav-link underline">About Us</a>
+                  </li>
+                  <li class="footer__nav-item">
+                      <a href="/#services" class="footer__nav-link underline">Services</a>
+                  </li>
+                  <li class="footer__nav-item">
+                      <a href="/#reviews" class="footer__nav-link underline">Reviews</a>
+                  </li>
+                  <li class="footer__nav-item">
+                      <a href="/contact.html" class="footer__nav-link underline">Contact</a>
+                  </li>
+              </ul>
+          </nav>
+          <a href="#"  class="footer__back underline">Back to top</a>
+      </div>
+    </footer>
+
 </body>
 </html>
