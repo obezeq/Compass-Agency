@@ -505,7 +505,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    align-items: center;
     justify-content: center;
     padding: 0vh 0 13vh 0;
     background-color: var(--primary-color);
