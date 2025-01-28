@@ -168,11 +168,11 @@ header {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     display: flex;
-    justify-content: space-between; /* Space between title and burger */
+    justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1.5rem; /* Add space on sides */
-    z-index: 1000;
-    border-bottom: 0.0625rem solid var(--primary-color); /* 1px = 0.0625rem */
+    padding: 0.5rem 1.5rem;
+    z-index: 1100;
+    border-bottom: 0.0625rem solid var(--primary-color);
 }
 
 .header__title-link {
@@ -216,12 +216,12 @@ header {
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0;
+    top: 4rem; /* Starts below the header */
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 4rem); /* Adjust height to not cover header */
     background-color: var(--primary-color);
-    z-index: 1000;
+    z-index: 1000; /* Ensure it's below the header */
     padding-top: 5rem;
 }
 
@@ -256,7 +256,12 @@ header {
     transform: rotate(90deg);
 }
 
-/* Responsive Adjustments */
+
+/* --------------------------------- */
+/* RESPONSIVE:                       */
+/* Header Component                  */
+/* --------------------------------- */
+
 @media (min-width: 768px) {
     header {
         width: 100vw;
@@ -290,7 +295,7 @@ header {
 @media (max-width: 480px) {
     .header__nav {
         justify-content: flex-start;
-        padding-top: 5rem;
+        height: 100vh;
     }
 
     .header__nav-link {
@@ -345,9 +350,10 @@ header {
     color: var(--secondary-color);
 }
 
-/* ───────────────────────────────── */
-/*         MEDIA QUERIES              */
-/* ───────────────────────────────── */
+/* --------------------------------- */
+/* RESPONSIVE:                       */
+/* Footer Component                  */
+/* --------------------------------- */
 
 /* 1360px (Desktop pequeño) */
 @media screen and (max-width: 1360px) {
@@ -366,6 +372,10 @@ header {
     .footer__nav-list {
         font-size: 0.8rem;
         gap: 0.8rem;
+    }
+
+    .footer__back {
+        font-size: 0.8rem;
     }
 }
 
@@ -395,6 +405,10 @@ header {
         font-size: 0.7rem;
         gap: 0.5rem;
     }
+
+    .footer__back {
+        font-size: 0.7rem;
+    }
     
     .footer__copyright {
         text-align: center;
@@ -417,10 +431,19 @@ header {
         font-size: 1.8rem;
     }
     
+    .footer__nav {
+        width: 100%;
+    }
+
     .footer__nav-list {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
         gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .footer__back  {
         font-size: 0.9rem;
     }
     
@@ -436,7 +459,8 @@ header {
         font-size: 1.6rem;
     }
     
-    .footer__nav-list {
+    .footer__nav-list,
+    .footer__back {
         font-size: 0.8rem;
     }
     
@@ -783,6 +807,7 @@ svg {
 
 .home__about--title {
     font-size: 8rem;
+    text-align: center;
 }
 
 .home__about--subtitle {
@@ -824,6 +849,7 @@ svg {
 
 .home__contact--title {
     font-size: 8rem;
+    text-align: center;
 }
 
 .home__contact--subtitle {
@@ -848,173 +874,7 @@ svg {
 
 /* --------------------------------- */
 /* RESPONSIVE:                       */
-/* Home Page - Presentation          */
-/* --------------------------------- */
-
-@media (max-width: 1360px) {
-    .presentation__title {
-        font-size: 8rem;
-    }
-
-    .presentation__subtitle {
-        font-size: 2.5rem;
-    }
-
-    .presentation__topsubtitle {
-        font-size: 2.5rem;
-    }
-
-    .home__services--title {
-        font-size: 7rem;
-    }
-    
-    .services__service--title {
-        font-size: 2rem;
-    }
-
-    .services__service--description {
-        font-size: 1.1rem;
-    }
-
-    .services__service--learn {
-        font-size: 1.1rem;
-    }
-
-    .whataretheysaying__title {
-        font-size: 6rem;
-    }
-
-    .home__reviews--title {
-        font-size: 7rem;
-    }
-
-    .home__reviews--subtitle {
-        font-size: 1.8rem;
-    }
-
-    .review__person {
-        font-size: 1.6rem;
-    }
-
-    .review__company {
-        font-size: 1.1rem;
-    }
-
-    .review__description {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 1180px) {
-
-    .reviews__review {
-        width: 100%;
-    }
-
-    .reviews__container {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 768px) {
-
-    body {
-        overflow-x: hidden;
-        background-color: #111111;
-    }
-
-    .presentation {
-        gap: 1rem;
-        overflow: hidden;
-    }
-
-    .presentation__title {
-        font-size: 8rem;
-    }
-
-    .presentation__subtitle {
-        font-size: 3rem;
-    }
-
-    .presentation__topsubtitle {
-        font-size: 3rem;
-        transform: translateX(-33%);
-    }
-
-    .services__slide {
-        height: 50vh;
-        overflow: hidden;
-    }
-
-    .whataretheysaying__title {
-        font-size: 4rem;
-    }
-
-    /* Quality over Quantity Responsive */
-    .quality {
-        height: 87%;
-    }
-
-    .quality__text {
-        font-size: 3.5rem;
-        padding: 6rem 4rem;
-    }
-
-    .circle {
-        width: 80%;
-        height: 50%; 
-        border: 0.4rem solid var(--secondary-color); 
-    }
-    .text {
-        font-size: 1.5rem;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .presentation {
-        gap: 1rem;
-        overflow: hidden;
-    }
-
-    .presentation__title {
-        font-size: 4rem;
-    }
-
-    .presentation__subtitle {
-        font-size: 2rem;
-    }
-
-    .presentation__topsubtitle {
-        font-size: 2rem;
-        transform: translateX(-20%);
-    }
-
-    .services__slide {
-        justify-content:center;
-        overflow: hidden;
-        height: 33vh;
-    }
-
-    .circle {
-        width: 90%;
-        height: 40%;
-        border: 0.3rem solid var(--secondary-color);
-    }
-    .text {
-        font-size: 3rem;
-        transform: rotateX(50deg);
-    }
-    
-}
-
-/* --------------------------------- */
-/* RESPONSIVE:                       */
+/* Home Page                         */
 /* --------------------------------- */
 
 @media (max-width: 1360px) {
@@ -1057,6 +917,22 @@ svg {
         font-size: 6rem;
     }
 
+    .home__reviews--subtitle {
+        font-size: 1.8rem;
+    }
+
+    .review__person {
+        font-size: 1.8rem;
+    }
+
+    .review__company {
+        font-size: 1.1rem;
+    }
+
+    .review__description {
+        font-size: 1.1rem;
+    }
+
     .home__about--subtitle,
     .home__contact--subtitle {
         font-size: 2.5rem;
@@ -1065,9 +941,19 @@ svg {
     .home__about--team {
         width: 80%;
     }
+
+    .reviews__container {
+        width: 90%;
+    }
+    
+    .home__about--team,
+    .home__contact--subtitle {
+        width: 70%;
+    }
 }
 
 @media (max-width: 1180px) {
+
     .reviews__review {
         width: 100%;
     }
@@ -1078,11 +964,20 @@ svg {
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        background-color: #111111;
+    }
+
+    .presentation {
+        gap: 1rem;
+        overflow: hidden;
+    }
+
     .presentation__title {
         font-size: 6rem;
     }
 
-    .presentation__subtitle,
     .presentation__topsubtitle {
         font-size: 2.2rem;
         transform: translateX(-25%);
@@ -1090,6 +985,7 @@ svg {
 
     .services__slide {
         height: 60vh;
+        overflow: hidden;
     }
 
     .services__service {
@@ -1102,6 +998,10 @@ svg {
         padding: 10vh 5vh;
     }
 
+    .quality {
+        height: 87%;
+    }
+
     .quality__text {
         font-size: 3.5rem;
         padding: 4rem 2rem;
@@ -1110,6 +1010,11 @@ svg {
     .circle {
         width: 85%;
         height: 45%;
+        border: 0.4rem solid var(--secondary-color);
+    }
+
+    .text {
+        font-size: 1.5rem;
     }
 
     .whataretheysaying__title,
@@ -1139,9 +1044,64 @@ svg {
     .review__person {
         font-size: 1.8rem;
     }
+
+    /* Additional styles */
+    .home__reviews,
+    .home__about,
+    .home__contact {
+        height: auto;
+        padding: 8rem 0;
+    }
+
+    .home__reviews--title,
+    .home__about--title,
+    .home__contact--title {
+        font-size: 4rem;
+        width: 80%;
+    }
+
+    .reviews__container {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .reviews__review {
+        width: 80%;
+    }
+
+    .home__about--team {
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .home__contact--subtitle {
+        width: 80%;
+        font-size: 2rem;
+    }
+
+    .home__about--subtitle,
+    .home__contact--link,
+    .home__about--link {
+        font-size: 2rem;
+    }
+
+    .reviews__discover {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .presentation {
+        gap: 1rem;
+        overflow: hidden;
+    }
+
     .presentation__title {
         font-size: 4rem;
     }
@@ -1149,10 +1109,15 @@ svg {
     .presentation__subtitle,
     .presentation__topsubtitle {
         font-size: 1.8rem;
+    }
+
+    .presentation__topsubtitle {
         transform: translateX(-15%);
     }
 
     .services__slide {
+        justify-content: center;
+        overflow: hidden;
         height: 40vh;
     }
 
@@ -1175,7 +1140,7 @@ svg {
     .circle {
         width: 90%;
         height: 40%;
-        border-width: 0.3rem;
+        border: 0.3rem solid var(--secondary-color);
     }
 
     .text {
@@ -1194,6 +1159,7 @@ svg {
     .home__contact--subtitle {
         font-size: 1.8rem;
         width: 90%;
+        text-align: center;
     }
 
     .home__about--link,
@@ -1214,126 +1180,42 @@ svg {
         font-size: 1.5rem;
         padding: 0.8rem;
     }
-}
 
-/* ========== 1360px ========== */
-@media (max-width: 1360px) {
-    .home__reviews--title,
-    .home__about--title,
-    .home__contact--title {
-        font-size: 6rem;
-    }
-    
     .reviews__container {
         width: 90%;
     }
-    
-    .home__about--team,
-    .home__contact--subtitle {
-        width: 70%;
-    }
-    
-    .review__person {
-        font-size: 1.8rem;
-    }
-    
-    .review__description {
-        font-size: 1.1rem;
-    }
-}
 
-/* ========== 768px ========== */
-@media (max-width: 768px) {
-    .home__reviews,
-    .home__about,
-    .home__contact {
-        height: auto;
-        padding: 8rem 0;
-    }
-    
-    .home__reviews--title,
-    .home__about--title,
-    .home__contact--title {
-        font-size: 4rem;
-        width: 80%;
-    }
-    
-    .reviews__container {
-        flex-direction: column;
-        width: 80%;
-    }
-    
-    .reviews__review {
-        width: 80%;
-    }
-    
-    .home__about--team {
-        width: 80%;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-    
-    .home__contact--subtitle {
-        width: 80%;
-        font-size: 2rem;
-    }
-    
-    .home__about--subtitle,
-    .home__contact--link,
-    .home__about--link {
-        font-size: 2rem;
-    }
-    
-    .reviews__discover {
-        font-size: 1.5rem;
-    }
-}
-
-/* ========== 480px ========== */
-@media (max-width: 480px) {
-    .home__reviews--title,
-    .home__about--title,
-    .home__contact--title {
-        font-size: 3.5rem;
-        width: 90%;
-    }
-    
-    .reviews__container {
-        width: 90%;
-    }
-    
     .reviews__review {
         width: 90%;
         padding: 1rem;
     }
-    
+
     .review__person {
         font-size: 1.6rem;
     }
-    
+
     .review__company,
     .review__description {
         font-size: 1rem;
     }
-    
+
     .home__about--team,
     .home__contact--subtitle {
         width: 90%;
     }
-    
+
     .home__about--subtitle,
     .home__contact--subtitle {
         font-size: 1.8rem;
         text-align: center;
     }
-    
+
     .home__contact--link,
     .home__about--link {
         font-size: 1.8rem;
         padding: 1rem 2rem;
     }
-    
+
     .reviews__discover {
         font-size: 1.2rem;
         padding: 0.8rem;
@@ -1877,17 +1759,11 @@ svg {
 
     .about__content {
         font-size: 1.4rem;
-        padding: 0 1rem; /* Prevent content from touching edges */
+        padding: 0 1rem;
     }
 
     .team__container {
-        width: 100%; /* Full width on mobile */
-    }
-
-    /* Fix list spacing */
-    ul {
-        padding-left: 1.5rem; /* Add space for bullet points */
-        margin-left: 1rem; /* Extra spacing from screen edge */
+        width: 100%;
     }
 }
 
@@ -1911,12 +1787,6 @@ svg {
     .about__content {
         font-size: 1.2rem;
         padding: 0 0.5rem;
-    }
-
-    /* Ensure list markers stay visible but not touching */
-    ul {
-        padding-left: 1.2rem;
-        margin-left: 0.5rem;
     }
 }
 
