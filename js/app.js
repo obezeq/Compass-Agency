@@ -16,7 +16,6 @@ gsap.from(".presentation h3", {
     scrollTrigger: {
         trigger: ".presentation",
         scroller: "body",
-        markers: true,
         start: "top 0%",
         end: "top -150%",
         scrub: 3,
@@ -45,7 +44,6 @@ gsap.to(".services__slide h1", {
     scrollTrigger: {
         trigger: ".services__slide",
         scroller: "body",
-        markers: true,
         start: "top 0%",
         end: "top -150%",
         scrub: 2,
@@ -61,7 +59,6 @@ gsap.from(".quality", {
     scrollTrigger: {
         trigger: ".qualityoverquantity",
         scroller: "body",
-        markers: true,
         start: "top 0%",
         end: "top -250%",
         scrub: 3,
@@ -75,7 +72,6 @@ gsap.from(".whataretheysaying__title", {
     scrollTrigger: {
         trigger: ".home__whataretheysaying",
         scroller: "body",
-        markers: true,
         start: "top 0%",
         end: "top -300%",
         scrub: 1,
