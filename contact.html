@@ -84,13 +84,13 @@
                     </li>
                     <li class="contact__info--item">
                         <span class="fa-solid fa-calendar-check"></span>
-                        <a class="contact__info--link" href="./#">Book a meeting</a>
+                        <a id="bookMeeting" class="contact__info--link">Book a meeting</a>
                     </li>
                 </ul>
             </article>
-            <article class="contact__info--quote">
-                "The important thing is not to stop questioning. Curiosity has its own reason for existing. One cannot help but be in awe when they contemplate the mysteries of eternity, of life, of the marvelous structure of reality. It is enough if one tries merely to comprehend a little of this mystery every day. Never lose a holy curiosity."
-                – Albert Einstein
+            <article class="contact__info--quotes">
+                <p id="quote" class="contact__info--quote">"The important thing is not to stop questioning. Curiosity has its own reason for existing. One cannot help but be in awe when they contemplate the mysteries of eternity, of life, of the marvelous structure of reality. It is enough if one tries merely to comprehend a little of this mystery every day. Never lose a holy curiosity."– Albert Einstein</p>
+                <a id="quoteButton" class="contact__form--button">Hide Quote</a>
             </article>
         </section>
         <section class="contact__form">
@@ -108,8 +108,8 @@
                 </div>
 
                 <div class="contact__form--container">
-                    <label class="contact__form--label" for="email">Phone Number</label>
-                    <input class="contact__form--input" type="email" id="email" name="email" placeholder="Enter your phone number" required>
+                    <label class="contact__form--label" for="phone">Phone Number</label>
+                    <input class="contact__form--input" type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
                 </div>
             
                 <div class="contact__form--container">
@@ -196,5 +196,7 @@
             <a href="#"  class="footer__back underline">Back to top</a>
         </div>
     </footer>
+
+    <script src="js/contact.js"></script>
 </body>
 </html>

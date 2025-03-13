@@ -1276,12 +1276,19 @@ svg {
 
 .contact__info--link:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .contact__info--quote {
     width: 75%;
     font-size: 1.3rem;
     font-style: italic;
+}
+
+.contact__info--quotes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 /* Contact Form (Right Side of CONTACT PAGE) */
