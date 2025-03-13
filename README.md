@@ -204,6 +204,7 @@ El error era simplemente un despiste, lo he solucionado simplemente poniendo la 
 
 Para solucionarlo simplemente he sustituido el "h1" por un "div" pues el "div" me sirve como una especie de container para el logo del footer, el cual incluirá un "h1", adentro con el enlace "a", y luego un "p" donde ya contendrá el copyright.
 
+---
 
 ### VALIDACIÓN W3C - CSS3
 
@@ -252,6 +253,282 @@ El error ocurría porque `space-between` **no es un valor válido** para la prop
 **¿Cómo lo he podido solucionar?**  
 1. **He revisado que es una propiedad incorrecta:** la he remplazado `align-items: space-between;` por un valor válido como `center`, que centra los elementos horizontalmente (ya que `flex-direction: column` define el eje transversal como horizontal).
 2. **Aclaración sobre `space-between`:** Si el objetivo era distribuir los elementos con espacio entre ellos, esto se logra con `justify-content: space-between` (para el eje principal). Sin embargo, en el código original, `justify-content` estaba configurado como `center`, por lo que se asumió que la intención no era usar `space-between` en el eje principal. Si ese fuera el caso, habría que ajustar `justify-content` en lugar de `align-items`.
+
+---
+
+Aquí tienes la documentación para la **Parte 1: Uso de JavaScript (ES6)**, explicada de forma extensa y en primera persona:
+
+---
+
+## Uso de JavaScript (ES6)
+
+En esta fase del proyecto he aprovechado al máximo las características modernas de ECMAScript 6 (ES6) para escribir un código claro, eficiente y fácil de mantener. A continuación, detallo cada aspecto importante y cómo lo he implementado en mi código.
+
+### Declaración de Variables con `let` y `const`
+
+He utilizado `const` para declarar aquellas variables cuyos valores no deben cambiar durante la ejecución, garantizando que la referencia permanezca inmutable. Por otro lado, `let` lo uso para variables que necesito actualizar, como contadores o estados temporales.
+
+Por ejemplo, en la función `handleBookMeeting`:
+```js
+'use strict';
+
+const handleBookMeeting = () => {
+    let bookDate;
+    do {
+        bookDate = prompt("Introduce the day of the meeting (YYYY-MM-DD):");
+    } while (!/^\d{4}-\d{2}-\d{2}$/.test(bookDate));
+
+    alert(`The meeting is booked on ${bookDate}`);
+};
+```
+Aquí, `bookDate` se declara con `let` porque su valor se actualiza dentro del bucle `do...while` hasta que se cumpla la condición. Esto me permite asegurar que el dato final cumpla con el formato deseado sin necesidad de sobrescribir una constante.
+
+### Arrow Functions
+
+Las arrow functions me han permitido definir funciones de forma concisa, eliminando la necesidad de la palabra clave `function` y, además, preservan el contexto de `this` de forma natural. Esto es especialmente útil en el manejo de eventos y en funciones de callback.
+
+Un ejemplo claro es la función para actualizar el valor del presupuesto:
+```js
+const updateBudgetDisplay = (value) => {
+    budgetValue.textContent = `$${parseInt(value).toLocaleString()}`;
+};
+```
+La sintaxis de la arrow function hace que el código sea más legible y compacto, ayudándome a centrarme en la lógica del problema en lugar de en la sintaxis.
+
+### Template Literals
+
+Los template literals (cadenas literales) son una herramienta poderosa que he utilizado para construir cadenas de texto dinámicamente. Al usar comillas invertidas (`` ` ``), puedo interpolar variables y expresiones de manera directa y limpia, lo que facilita la generación de mensajes o contenidos dinámicos.
+
+Por ejemplo, en el mensaje de confirmación de la reunión:
+```js
+alert(`The meeting is booked on ${bookDate}`);
+```
+Esto resulta mucho más legible que concatenar cadenas con el operador `+` y me permite incluir variables dentro del mensaje de forma directa.
+
+### Desestructuración
+
+La desestructuración es una técnica que he empleado para extraer valores de objetos y arrays de manera directa. En mi código, la utilizo en la función que maneja el envío del formulario para acceder a los elementos del formulario de forma sencilla.
+
+Por ejemplo:
+```js
+const initializeFormHandler = () => {
+    const form = document.querySelector(".contact__form--form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Extraigo los elementos del formulario directamente
+        const { name, message } = form.elements;
+
+        if (name.value.trim() === "" || message.value.trim() === "") {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        // Resto del código para manipular el DOM y añadir un nuevo mensaje
+    });
+};
+```
+Mediante la desestructuración, evito tener que llamar a `document.getElementById` o acceder manualmente a cada propiedad, lo que hace el código más compacto y fácil de entender.
+
+### Buenas Prácticas y Estructuración del Código
+
+- **'use strict':**  
+  Incluir `"use strict";` al inicio de mi archivo me ayuda a escribir un código más seguro y a evitar errores comunes al trabajar con JavaScript.
+
+- **Modularidad:**  
+  He dividido la funcionalidad en funciones específicas (por ejemplo, `handleBookMeeting`, `initializeFormHandler`, etc.), lo que me permite organizar el código por responsabilidades. Cada función se encarga de una tarea concreta, lo que facilita tanto la lectura como el mantenimiento.
+
+- **Legibilidad y Comentarios:**  
+  A lo largo del código he añadido comentarios explicativos en cada sección clave. Esto no solo me ayuda a mí a recordar el propósito de cada bloque, sino que también facilita la comprensión a otros desarrolladores o evaluadores.
+
+- **Consistencia en el estilo:**  
+  He seguido un estilo consistente (indentación, nombres de funciones en camelCase, etc.) que es fundamental para mantener el código limpio y profesional.
+
+### Ejemplo Completo de Uso de ES6 en una Función
+
+Aquí muestro un ejemplo consolidado que combina varias de estas características:
+```js
+'use strict';
+
+const handleBookMeeting = () => {
+    let bookDate;
+    do {
+        bookDate = prompt("Introduce the day of the meeting (YYYY-MM-DD):");
+    } while (!/^\d{4}-\d{2}-\d{2}$/.test(bookDate));
+
+    alert(`The meeting is booked on ${bookDate}`);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    const bookMeetingButton = document.getElementById("bookMeeting");
+    bookMeetingButton.addEventListener("click", handleBookMeeting);
+});
+```
+En este fragmento, utilizo:
+- **Constantes y variables con `const` y `let`** para gestionar el flujo de datos.
+- **Arrow function** para definir `handleBookMeeting` de forma concisa.
+- **Template literal** para formar el mensaje del `alert`.
+- **Manejo de eventos** con `addEventListener` y la utilización del evento `DOMContentLoaded` para asegurar que el DOM esté completamente cargado.
+
+---
+
+## 2. Manipulación del DOM
+
+He utilizado diversas tecnicas para manipular el DOM de forma dinámica y responder a las interacciones del usuario. A continuación, describo cada handler implementado, explicando su funcionamiento y por que tome cada decision.
+
+### 2.1. **initializeQuoteManager()**
+
+Esta función se encarga de gestionar la visibilidad de una cita y el texto del botón asociado. Su funcionamiento se basa en:
+
+- **Selección de elementos:**  
+  Utilizo `document.getElementById` para acceder a la cita (`#quote`) y al botón (`#quoteButton`).
+
+- **Gestión del estado:**  
+  Creo una variable booleana (`isQuoteVisible`) para llevar el control de si la cita se muestra o no.
+
+- **Manejo de eventos:**  
+  Mediante `addEventListener` asigno un handler al botón que, al hacer clic, ejecuta la lógica para alternar la visibilidad. Se utiliza `event.preventDefault()` para evitar comportamientos por defecto en el enlace.
+
+- **Modificación del DOM:**  
+  Dependiendo del estado, se cambia la propiedad `style.display` de la cita y se actualiza el contenido textual del botón utilizando el operador ternario.
+
+#### Código:
+```js
+const initializeQuoteManager = () => {
+    const quote = document.getElementById("quote");
+    const quoteButton = document.getElementById("quoteButton");
+
+    let isQuoteVisible = true;
+
+    quoteButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Evito la navegación por defecto del <a>
+        quote.style.display = isQuoteVisible ? "none" : "block"; // Alterno la visibilidad
+        quoteButton.textContent = isQuoteVisible ? "Show Quote" : "Hide Quote"; // Actualizo el texto del botón
+        isQuoteVisible = !isQuoteVisible; // Cambio el estado
+    });
+};
+```
+
+### 2.2. **initializeBudgetSlider()**
+
+Esta función permite actualizar dinámicamente el valor mostrado de un presupuesto basado en la interacción del usuario con un control deslizante (`input type="range"`). Aquí se destacan los siguientes aspectos:
+
+- **Selección de elementos:**  
+  Accedo al input del presupuesto y al elemento donde se muestra el valor (`#budget-value`).
+
+- **Actualización en tiempo real:**  
+  Defino una función llamada `updateBudgetDisplay` (implementada como arrow function) que actualiza el contenido textual del `<span>` formateando el número con separadores de miles.
+
+- **Manejo de eventos:**  
+  Con `addEventListener` escucho el evento `input` para que cada vez que el usuario cambie el valor del slider, se actualice la visualización.
+
+#### Código:
+```js
+const initializeBudgetSlider = () => {
+    const budgetInput = document.getElementById("budget");
+    const budgetValue = document.getElementById("budget-value");
+
+    // Función que actualiza la visualización del presupuesto
+    const updateBudgetDisplay = (value) => {
+        budgetValue.textContent = `$${parseInt(value).toLocaleString()}`;
+    };
+
+    // Inicializo la visualización con el valor actual del input
+    updateBudgetDisplay(budgetInput.value);
+
+    // Escucho el evento input para actualizar el valor en tiempo real
+    budgetInput.addEventListener("input", (event) => {
+        updateBudgetDisplay(event.target.value);
+    });
+};
+```
+
+### 2.3. **initializeBookMeeting()**
+
+Esta función se encarga de gestionar la reserva de una reunión. Su lógica se centra en:
+
+- **Selección de elementos:**  
+  Se selecciona el botón destinado a reservar la reunión mediante `document.getElementById`.
+
+- **Manejo de eventos:**  
+  Asigno un listener para el evento `click` que ejecuta la función `handleBookMeeting`.  
+  La función `handleBookMeeting` utiliza un bucle `do...while` para validar que el usuario ingrese una fecha en formato `YYYY-MM-DD`, y posteriormente muestra un `alert` confirmando la reserva.
+
+#### Código:
+```js
+const initializeBookMeeting = () => {
+    const bookMeetingButton = document.getElementById("bookMeeting");
+    bookMeetingButton.addEventListener("click", handleBookMeeting);
+};
+```
+
+La función `handleBookMeeting` (ya explicada en la parte 1) se encarga de:
+- Pedir al usuario la fecha mediante `prompt`.
+- Validar el formato con una expresión regular.
+- Mostrar un mensaje de confirmación.
+
+### 2.4. **initializeFormHandler()**
+
+Esta función gestiona el envío del formulario de contacto y la creación dinámica de nuevos elementos en la lista de contacto. Se abordan varios aspectos críticos:
+
+- **Selección de elementos:**  
+  Utilizo `document.querySelector` para obtener el formulario y la lista donde se agregarán los nuevos mensajes.
+
+- **Prevención del comportamiento por defecto:**  
+  Con `event.preventDefault()` impido que el formulario se envíe de forma tradicional, lo que evita recargar la página.
+
+- **Validación de entrada:**  
+  Utilizo la desestructuración para extraer directamente los elementos del formulario (`name` y `message`). Valido que ambos campos no estén vacíos.
+
+- **Creación de nuevos elementos:**  
+  Mediante `document.createElement` creo un nuevo `<li>` y dos `<span>` (uno para el ícono y otro para el mensaje). Uso `appendChild` para construir la estructura y finalmente agrego el nuevo `<li>` a la lista de contactos.
+
+- **Limpieza del formulario:**  
+  Después de agregar el nuevo mensaje, se restablece el formulario con `form.reset()`.
+
+#### Código:
+```js
+const initializeFormHandler = () => {
+    const form = document.querySelector(".contact__form--form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Desestructuro los elementos del formulario para acceder a name y message
+        const { name, message } = form.elements;
+
+        if (name.value.trim() === "" || message.value.trim() === "") {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        // Creo un nuevo elemento de lista para mostrar el mensaje de contacto
+        const list = document.querySelector(".contact__info--list");
+        const newItem = document.createElement("li");
+        newItem.classList.add("contact__info--item");
+
+        const icon = document.createElement("span");
+        icon.classList.add("fa-solid", "fa-user");
+
+        const text = document.createElement("span");
+        text.textContent = `${name.value}: ${message.value}`;
+
+        // Agrego el ícono y el texto al nuevo <li>
+        newItem.appendChild(icon);
+        newItem.appendChild(text);
+
+        // Inserto el nuevo <li> en la lista de contactos
+        list.appendChild(newItem);
+
+        // Limpio el formulario y notificar al usuario
+        form.reset();
+        alert("Contacted");
+    });
+};
+```
+
+---
 
 # 👀 ¿Cómo visualizar la página web?
 
