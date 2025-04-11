@@ -530,6 +530,434 @@ const initializeFormHandler = () => {
 
 ---
 
+## 3. Funcionalidades Interactivas
+
+En esta fase, he implementado cuantro funcionalidades clave que mejoran la interacción del usuario entre ella nos encontramos con: **galería dinámica**, **validación de formulario en tiempo real**, **sistema de filtrado de reseñas** y **flujo libre del proyecto (asignación servicios interesados mientras el usuario interactua por la página)**. A continuación, detallo cada una:
+
+---
+
+### 3.1. Galería Interactiva (Drag & Drop + Lightbox)
+La galería permite subir imágenes arrastrándolas o seleccionándolas, eliminarlas y reorganizarlas. También incluye un lightbox para visualización ampliada.
+
+#### **Creación y Eliminación Dinámica de Elementos**
+
+Añadir imagen (`gallery.js`)
+```js
+const addImageToGallery = (src) => {
+  const listItem = document.createElement('li');
+  listItem.className = 'gallery-list-item';
+  listItem.draggable = true;
+  listItem.innerHTML = `
+    <figure class="gallery-figure">
+      <img src="${src}" alt="Imagen subida" class="gallery-image">
+      <button class="gallery-delete-btn">×</button>
+    </figure>
+  `;
+  galleryList.appendChild(listItem); // Lo añado al DOM
+};
+```
+
+Eliminar imagen (`gallery.js`)
+```js
+const deleteImage = (item) => {
+  item.remove(); // Lo elimino del DOM
+  updateImageArray();
+};
+```
+
+#### **Eventos de Arrastrar y Soltar**
+
+Drag & Drop (`gallery.js`)
+```js
+item.addEventListener('dragstart', handleDragStart);
+galleryList.addEventListener('dragover', handleDragOver);
+
+const handleDragOver = (e) => {
+  e.preventDefault();
+  const afterElement = getDragAfterElement(galleryList, e.clientY);
+  galleryList.insertBefore(draggedItem, afterElement); // Aqui reorganizo los elementos
+};
+```
+
+#### **Modificación de Estilos en Lightbox**
+Lightbox (`gallery.js`)
+```js
+const openLightbox = () => {
+  lightboxImage.style.transform = 'scale(1.1)'; // Logrando un efecto visual
+  lightbox.showModal();
+  document.body.style.overflow = 'hidden'; // Bloqueando asi el scroll
+};
+```
+
+---
+
+### 3.2. Formulario con Validación Dinámica
+
+El formulario de contacto incluye validación en tiempo real y notificaciones visuales.
+
+#### **Validación de Campos**
+
+He validado ciertos campos así como, el nombre, el teléfono, el email, el mensaje y los servicios. Todas estas validaciones las compruebo desde initializeFormHandler(), especificamente en la funcion de adentro, validateForm(), donde uso destructuración.
+
+En caso que haya un error se almacenan en un array errors, donde luego se desplegaran todos los errores en el siguiente paso para notificarlo.
+
+En caso que no haya ningun error, como el array esta vacio, en el siguiente paso se notificara un mensaje de exito.
+
+Despues de enviar todo el formulario, se resetan los campos y el localStorage, ademas se resetea tambien el valor del budget slider a como estaba antes.
+
+**1. Validación del Nombre (`name`):**
+
+- Verifico que la longitud del nombre sea entre 2 y 50 caracteres y que ademas tenga caracteres.
+- Y luego verifico que el nombre sean caracteres validos.
+
+```js
+// VERIFICACIÓN DE CAMPO name DEL FORMULARIO
+if (name.length < 2 || name.length > 50) {
+    errors.push('The name should be within 2-50 valid characters');
+}
+
+for (let i = 0; i < name.length; i++) {
+    const char = name[i];
+    if (!(
+    (char >= 'A' && char <= 'Z') ||
+    (char >= 'a' && char <= 'z') ||
+    (char >= 'À' && char <= 'ÿ') ||
+    char === ' ' ||
+    char === "'"
+)) {
+    errors.push('The name contain no valid characters');
+    break;
+    }
+}
+```
+
+**2. Validación de email (`contact.js`)**
+
+- Aquí lo que hago es primero me creo un array de todos los dominios de emails temporales para evitar que el usuario haga una submission del formulario con emails temporales / desechables.
+- Posteriormente verifico que el email no contenga ningún espacio.
+- Compruebo que el email sea válido (que contenga un '@' y un '.')
+
+```js
+// VALIDACIÓN DE EMAIL
+const temporaryDomains = [
+    'tempmail.com',
+    '10minutemail.com',
+    'mailinator.com',
+    'guerrillamail.com',
+    'yopmail.com',
+    'throwawaymail.com',
+    'getnada.com',
+    'maildrop.cc',
+    'sharklasers.com',
+    'discard.email'
+];        
+
+if (email.includes(' ')) {
+    errors.push("The email can't contain any spaces");
+}
+
+if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    errors.push('The email is not valid');
+} else {
+    const emailDomain = email.split('@')[1];
+
+if (temporaryDomains.includes(emailDomain)) {
+    errors.push("The email can't be a disposable email")
+}
+```
+
+**3. Validación del Teléfono (`phone`):**
+```js
+// VERIFICACIÓN DEL TELEFONO MOVIL
+if (phone.length < 7 || phone.length > 20) {
+    errors.push('The phone number should be within 7-20 characters');
+}
+    
+for (let i = 0; i < phone.length; i++) {
+    const char = phone[i];
+    if (!(
+    (char >= '0' && char <= '9') ||
+    char === ' ' ||
+    char === '-' ||
+    char === '(' ||
+    char === ')' ||
+    char === '+'
+)) {
+    errors.push('The phone number containts invalid characters');
+    break;
+    }
+}
+```
+
+**4. Validación de Servicios (`services`):**
+```js
+// Aseguramos que seleccione al menos 1 servicio
+if (services.length === 0) {
+    errors.push('Debes seleccionar al menos un servicio');
+}
+```
+
+**5. Validación del Mensaje (`message`):**
+```js
+// Sanitización y longitud del mensaje
+const cleanMessage = sanitizeInput(message);
+if (cleanMessage.length < 50 || cleanMessage.length > 5000) {
+    errors.push('El mensaje debe tener 50-5000 caracteres');
+}
+```
+
+**Uso de Desestructuración:**  
+Para manejar los datos del formulario de forma más clara, utilizo desestructuración de objetos:
+
+```js
+const formData = {
+    name: sanitizeInput(form.elements.name.value.trim()),
+    email: form.elements.email.value.trim(),
+    phone: form.elements.phone.value.trim(),
+    message: sanitizeInput(form.elements.message.value.trim()),
+    services: selectedServices,
+    budget: form.elements.budget.value
+};
+
+// Desestructuración para acceder a las propiedades
+const { name, email, phone, message, services } = formData;
+
+// Uso en validaciones
+validateForm({ name, email, phone, message, services });
+```
+
+**Gestión de Errores:**  
+Todos los errores se almacenan en el array `errors`, y se muestran al usuario mediante notificaciones:
+
+```js
+if (validationErrors.length > 0) {
+    validationErrors.forEach(error => {
+        showNotification(error, false); // Muestra cada error
+    });
+    return; // Detiene el envío
+}
+```
+
+Esta estructura permite una validación detallada manteniendo el código organizado y fácil de mantener. La desestructuración ayuda a trabajar con objetos complejos de forma más intuitiva.
+
+#### **Notificaciones con Estilos Dinámicos**
+```js
+// Notificaciones (contact.js)
+const showNotification = (message, isSuccess) => {
+  notification.classList.add(isSuccess ? 'success' : 'error');
+  notification.style.opacity = '1'; // Animación CSS
+  setTimeout(() => notification.remove(), 3000);
+};
+```
+
+---
+
+### 3.3. Sistema de Filtrado de Reseñas
+
+Implementé un sistema de filtrado dinámico que permite a los usuarios explorar reseñas por calificación. Aquí el desglose técnico:
+
+#### **Lógica Central de Filtrado**
+```javascript
+const filterReviews = (rating) => {
+  allReviews.forEach(review => {
+    const starsElement = review.querySelector('.review__stars');
+    const starCount = starsElement.textContent.trim().length;
+    
+    // Animación de transición suave
+    review.style.transition = 'opacity 0.3s ease';
+    
+    if (rating === 'all' || starCount === parseInt(rating)) {
+      review.style.display = 'block';
+      setTimeout(() => review.style.opacity = '1', 10); // Retraso mínimo para trigger CSS
+    } else {
+      review.style.opacity = '0';
+      setTimeout(() => review.style.display = 'none', 300); // Espera a que termine la animación
+    }
+  });
+};
+```
+
+- **Cálculo de Estrellas:** Utilizo `textContent.length` para determinar la calificación de las estrellas.
+- **Animación Fluida:** Combino las propiedades `opacity` y `display` con transiciones CSS para lograr una buena animacion.
+- **Sincronización:** utilizo el `setTimeout` para coordinar cambios visuales con la animación
+
+#### **Gestión de Estado de Botones**
+```javascript
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+            
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+    button.classList.add('active');
+            
+    const rating = button.dataset.rating;
+            
+    filterReviews(rating);
+});
+});
+
+filterReviews('all');
+```
+
+---
+
+### 3.4. Flujo Libre: Persistencia de Datos en Formulario
+
+He implementado un sistema de persistencia para las selecciones de servicios usando **localStorage**, garantizando que las opciones marcadas por el usuario se mantengan incluso si recarga la página o navega entre secciones. Aquí doy mas informacion detalladamente:
+
+#### **Flujo de Trabajo:**
+1. **Recuperar Datos al Cargar la Página:**
+   ```js
+   const getSavedServices = () => {
+     try {
+       return JSON.parse(localStorage.getItem('selectedServices')) || [];
+     } catch (error) {
+       return []; // Si hay error, devuelve array vacío
+     }
+   };
+
+   // Al iniciar: marca los checkboxes guardados
+   checkboxes.forEach(checkbox => {
+     checkbox.checked = savedServices.includes(checkbox.value);
+   });
+   ```
+   - Recupera las selecciones almacenadas al cargar la página.
+   - Si no hay datos o hay un error, inicia con un array vacío.
+
+2. **Actualizar Datos en Tiempo Real:**
+   ```js
+   checkbox.addEventListener('change', ({ target }) => {
+     const serviceId = target.value;
+     let currentServices = getSavedServices(); // Obtiene el estado actual
+
+     if (target.checked) {
+       currentServices.push(serviceId); // Añade servicio
+     } else {
+       currentServices = currentServices.filter(id => id !== serviceId); // Elimina servicio
+     }
+
+     localStorage.setItem('selectedServices', JSON.stringify(currentServices)); // Guarda cambios
+   });
+   ```
+   - Actualiza el localStorage **instantáneamente** al marcar/desmarcar un checkbox.
+   - Usa `JSON.stringify` para convertir el array a formato almacenable.
+
+3. **Reset al Enviar el Formulario:**
+   ```js
+   form.addEventListener('submit', (event) => {
+     // ... validaciones ...
+     localStorage.removeItem('selectedServices'); // Limpia almacenamiento
+     checkboxes.forEach(checkbox => checkbox.checked = false); // Desmarca visualmente
+   });
+   ```
+   - Elimina los datos guardados después de enviar el formulario.
+   - Resetea los checkboxes para una nueva interacción.
+
+Al hacer todo esto logro que los cambios se reflejen en todas las pestañas abiertas y que los datos sobrevivan a recargas de página y navegación, mientras utilizo seguridad con le `try/catch` para manejar posibles errores al parsear.
+
+#### **Ejemplo de Datos Almacenados:**
+```json
+["prmanagement", "seo", "smm"]
+```
+
+Esto permite reconstruir el estado exacto de las selecciones del usuario en cualquier momento.
+
+---
+
+## 3.5. Justificación del Uso de ES6+ en el Proyecto
+
+Para este proyecto, elegí JavaScript moderno (ES6+) **porque ofrece ventajas claras en legibilidad, mantenibilidad y eficiencia**. Aquí muestro cómo apliqué sus características clave:
+
+---
+
+### **1. Arrow Functions y Sintaxis Concisa**  
+**Ejemplo en `contact.js` (validación de email):**
+```js
+// Arrow function + template literal
+const showNotification = (message, isSuccess) => {
+  notification.textContent = `${message} 🚨`; 
+  notification.classList.add(isSuccess ? 'success' : 'error');
+};
+```
+**Ventaja:**  
+- Código más compacto (sin `function` repetitivo).  
+- `this` léxico evita errores en callbacks (como en event listeners).
+
+---
+
+### **2. Destructuring para Manejo de Datos**  
+**Ejemplo en el formulario (`contact.js`):**
+```js
+// Desestructuración de objetos complejos
+const { name, email, services } = formData;
+
+// En eventos (reviews.js):
+button.addEventListener('click', ({ target }) => { 
+  const rating = target.dataset.rating; 
+});
+```
+**Ventaja:**  
+- Extracción clara de propiedades sin código repetitivo.  
+- Mejor legibilidad al trabajar con datos anidados.
+
+---
+
+### **3. Template Literals para Strings Dinámicos**  
+**Ejemplo en `gallery.js` (creación de elementos):**
+```js
+const listItem = document.createElement('li');
+listItem.innerHTML = `
+  <figure>
+    <img src="${src}" alt="Imagen subida">
+    <button class="delete-btn">×</button>
+  </figure>
+`;
+```
+**Ventaja:**  
+- Código HTML embebido más legible.  
+- Interpolación de variables sin concatenaciones engorrosas (+ soporte multi-línea).
+
+---
+
+### **4. Métodos Modernos de Array**  
+**Ejemplo en `reviews.js` (filtrado):**
+```js
+// Convertir NodeList a Array y filtrar
+const allReviews = Array.from(document.querySelectorAll('.review'));
+const filtered = allReviews.filter(review => {
+  return review.dataset.rating === selectedRating;
+});
+```
+**Ventaja:**  
+- Cadenas de métodos (`filter` + `map`) para manipulación declarativa de datos.  
+- Elimina la necesidad de loops `for` tradicionales.
+
+---
+
+### **5. Gestión de Scope con `const`/`let`**  
+**Ejemplo en `app.js` (animaciones GSAP):**
+```js
+const timeline = gsap.timeline({ 
+  scrollTrigger: {
+    trigger: ".presentation",
+    scrub: true
+  }
+}); // Bloquea la reasignación accidental
+```
+**Ventaja:**  
+- Previene errores por hoisting (típicos de `var`).  
+- Scope de bloque = variables más seguras y predecibles.
+
+---
+
+### **¿Por qué ES6+ y no Vanilla JS tradicional?**  
+1. **Legibilidad:** El código se auto-documenta (ej: `=>` vs `function`).  
+2. **Menos errores:** Features como `const` evitan bugs comunes.  
+3. **Ecosistema moderno:** Compatibilidad con librerías como GSAP/ScrollTrigger.  
+4. **Mantenimiento:** Código más fácil de actualizar y depurar mientras me mantengo con los estandares modernos de JavaScript.
+
+---
+
 # 👀 ¿Cómo visualizar la página web?
 
 ##  VISUALIZAR LA WEBB CON GITHUB PAGES
