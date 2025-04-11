@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass Agency - Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <!-- Title -->
+        <h1 class="header__title">
+            <a href="." class="header__title-link">COMPASS</a>
+        </h1>
+
+        <!-- Burger Menu -->
+        <input type="checkbox" id="nav-toggle" class="header__nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="header__burger-menu">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+        </label>
+
+        <!-- Navigation Links -->
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="." class="header__nav-link underline">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="./#services" class="header__nav-link underline">Services</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="about.html" class="header__nav-link underline">About Us</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="./#reviews" class="header__nav-link underline">Reviews</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="contact.html" class="header__nav-link underline">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main__gallery">
+        <section class="gallery">
+            <h1 class="gallery-title">Galería de Imágenes</h1>
+
+            <article class="gallery-upload" role="region" aria-label="Área de carga de imágenes">
+                <span class="gallery-upload-icon" aria-hidden="true">↑</span>
+                <p class="gallery-upload-text">Arrastra imágenes aquí o haz clic para seleccionar</p>
+                <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            </article>
+
+            <ul class="gallery-list" role="list" aria-label="Lista de imágenes">
+                <li class="gallery-list-item" draggable="true">
+                    <figure class="gallery-figure">
+                        <img src="https://assets.codepen.io/210284/flower-6.jpg" 
+                             alt="Imagen 1" 
+                             class="gallery-image">
+                        <button class="gallery-delete-btn" aria-label="Eliminar imagen">×</button>
+                    </figure>
+                </li>
+                <li class="gallery-list-item" draggable="true">
+                    <figure class="gallery-figure">
+                        <img src="https://assets.codepen.io/210284/flower-6.jpg" 
+                             alt="Imagen 1" 
+                             class="gallery-image">
+                        <button class="gallery-delete-btn" aria-label="Eliminar imagen">×</button>
+                    </figure>
+                </li>
+                <li class="gallery-list-item" draggable="true">
+                    <figure class="gallery-figure">
+                        <img src="https://assets.codepen.io/210284/flower-6.jpg" 
+                             alt="Imagen 1" 
+                             class="gallery-image">
+                        <button class="gallery-delete-btn" aria-label="Eliminar imagen">×</button>
+                    </figure>
+                </li>
+                <li class="gallery-list-item" draggable="true">
+                    <figure class="gallery-figure">
+                        <img src="https://assets.codepen.io/210284/flower-6.jpg" 
+                             alt="Imagen 1" 
+                             class="gallery-image">
+                        <button class="gallery-delete-btn" aria-label="Eliminar imagen">×</button>
+                    </figure>
+                </li>
+            </ul>
+
+            <dialog class="gallery-lightbox" aria-labelledby="lightbox-title">
+                <button class="gallery-lightbox-close" aria-label="Cerrar lightbox">×</button>
+                <img class="gallery-lightbox-image" alt="Imagen en vista ampliada">
+                
+                <nav class="gallery-lightbox-controls" aria-label="Controles de navegación">
+                    <button class="gallery-lightbox-btn" data-direction="prev" aria-label="Imagen anterior">‹</button>
+                    <button class="gallery-lightbox-btn" data-direction="next" aria-label="Siguiente imagen">›</button>
+                </nav>
+
+                <aside class="gallery-thumbnails" aria-label="Miniaturas de imágenes"></aside>
+            </dialog>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__logo">
+                <h1><a href="." class="footer__logo-link">COMPASS AGENCY</a></h1>
+                <p class="footer__copyright">&copy; 2025 COMPASS AGENCY. All rights reserved.</p>
+            </div>
+            <nav class="footer__nav" aria-label="Footer Navigation">
+                <ul class="footer__nav-list">
+                    <li class="footer__nav-item">
+                        <a href="./" class="footer__nav-link underline">Home</a>
+                    </li>
+                    <li class="footer__nav-item">
+                        <a href="./about.html" class="footer__nav-link underline">About Us</a>
+                    </li>
+                    <li class="footer__nav-item">
+                        <a href="./#services" class="footer__nav-link underline">Services</a>
+                    </li>
+                    <li class="footer__nav-item">
+                        <a href="./#reviews" class="footer__nav-link underline">Reviews</a>
+                    </li>
+                    <li class="footer__nav-item">
+                        <a href="./contact.html" class="footer__nav-link underline">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="#"  class="footer__back underline">Back to top</a>
+        </div>
+    </footer>
+    
+    <script src="./js/gallery.js"></script>
+</body>
+</html>

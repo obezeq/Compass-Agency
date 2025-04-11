@@ -115,25 +115,25 @@
                 <div class="contact__form--container">
                     <label class="contact__form--label" for="service">What service are you interested in?</label>
                     <div class="contact__form--options">
-                      <input type="radio" id="prmanagement" name="service" value="prmanagement" class="contact__form--radio" required>
+                      <input type="checkbox" id="prmanagement" name="services" value="prmanagement" class="contact__form--checkbox">
                       <label for="prmanagement" class="contact__form--option">PR Management</label>
                   
-                      <input type="radio" id="sms" name="service" value="sms" class="contact__form--radio" required>
+                      <input type="checkbox" id="sms" name="services" value="sms" class="contact__form--checkbox">
                       <label for="sms" class="contact__form--option">Social Media Solutions</label>
                   
-                      <input type="radio" id="seo" name="service" value="seo" class="contact__form--radio" required>
+                      <input type="checkbox" id="seo" name="services" value="seo" class="contact__form--checkbox">
                       <label for="seo" class="contact__form--option">SEO Solutions</label>
 
-                      <input type="radio" id="mediabuying" name="service" value="mediabuying" class="contact__form--radio" required>
+                      <input type="checkbox" id="mediabuying" name="services" value="mediabuying" class="contact__form--checkbox">
                       <label for="mediabuying" class="contact__form--option">Media Buying</label>
 
-                      <input type="radio" id="smm" name="service" value="smm" class="contact__form--radio" required>
+                      <input type="checkbox" id="smm" name="services" value="smm" class="contact__form--checkbox">
                       <label for="smm" class="contact__form--option">Social Media Marketing</label>
 
-                      <input type="radio" id="digitalmarketing" name="service" value="digitalmarketing" class="contact__form--radio" required>
+                      <input type="checkbox" id="digitalmarketing" name="services" value="digitalmarketing" class="contact__form--checkbox">
                       <label for="digitalmarketing" class="contact__form--option">Digital Marketing</label>
 
-                      <input type="radio" id="other" name="service" value="other" class="contact__form--radio" required>
+                      <input type="checkbox" id="other" name="services" value="other" class="contact__form--checkbox">
                       <label for="other" class="contact__form--option">Other</label>
                     </div>
                   </div>
@@ -142,14 +142,14 @@
                     <label class="contact__form--label" for="budget">Select Your Budget</label>
                     <div class="contact__form--budget">
                         <input 
-                            type="range" 
-                            id="budget" 
-                            name="budget" 
-                            min="500" 
-                            max="10000" 
-                            step="500" 
-                            class="contact__form--range" 
-                            oninput="updateBudgetValue(this.value)" 
+                            type="range"
+                            id="budget"
+                            name="budget"
+                            min="500"
+                            max="10000"
+                            step="500"
+                            value="5500"
+                            class="contact__form--range"
                             required
                         >
                         <span class="contact__form--budget-value" id="budget-value">$1,000</span>
